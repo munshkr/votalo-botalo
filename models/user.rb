@@ -1,5 +1,7 @@
-class User < Sequel::Model(DB[:usuarios])
+class User < Sequel::Model
   plugin :schema
+
+  one_to_many :votes
 
   set_schema do
     primary_key :id

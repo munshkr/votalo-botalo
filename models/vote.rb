@@ -1,5 +1,8 @@
-class Vote < Sequel::Model(DB[:votos])
+class Vote < Sequel::Model
   plugin :schema
+
+  many_to_one :project
+  many_to_one :user
 
   set_schema do
     primary_key :id

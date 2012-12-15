@@ -1,3 +1,7 @@
+task :environment do
+  require File.expand_path("../../../config/boot.rb", __FILE__)
+end
+
 desc 'Fire up console'
 task :console => :environment do
   binding.pry

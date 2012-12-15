@@ -6,7 +6,6 @@ gem "shotgun"
 gem "sequel"
 gem "sqlite3"
 
-group :development do
-  gem "rake"
-  gem "debugger"
-end
+gem "pry"
+gem "rake"
+gem "debugger"

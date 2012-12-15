@@ -1,0 +1,258 @@
+.radius (@radius: 5px) {
+  border-radius: @radius;
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+}
+// fonts
+.font-size (@tamano: 13px) {
+	@emValue: (@tamano / 16);
+  	font-size: ~"@{emValue}em";
+}
+.signica (@espesor: 400, @tamano: 13px, @line: 120%) {// 400 book,300 regular,600 semibold
+	font-family: 'Signika', sans-serif;
+	font-weight: @espesor;
+	@emValue: (@tamano / 16);
+  	font-size: ~"@{emValue}em";
+  	line-height: @line;
+}
+
+* {margin:0; padding:0;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {border:0; outline:0; vertical-align:baseline; background:transparent;list-style:none;text-decoration:none}
+a:focus, a:active {outline:0;}
+
+body {
+	font-size: 100%;
+	font-family: 'Trabuchet MS', sans-serif;
+}
+
+#content {
+	width: 1000px;
+	overflow: hidden;
+	margin: 0 auto;
+	background: #889FAD;
+
+	#header {
+		height: 150px;
+  		width: 100%;
+ 		 background:url(../img/cabecera_bg.png) left top repeat-x;
+
+ 		 img {
+ 		 	margin:20px 25px;
+ 		 }
+	}
+	#aside {
+		width: 250px;
+		min-height: 200px;
+		float: left;
+		background: #889fad;
+
+		#shadow {
+			position:relative;
+			float:left;
+			margin-left:10px;
+			width:230px;
+			height:7px;
+			background:url(../img/left_sombra.png) top left no-repeat;
+		}
+	}
+	#proyectos {
+		float: left;
+		width: 726px;
+		background: #E6E6E6;
+		padding: 12px;
+
+		h1,h2 {
+			font-size: 17px;
+			padding: 10px;
+			margin-bottom: 15px;
+			color: #fff;
+			background: #3AB8EA;
+			float: left;
+		}
+
+		#masvotados, #recientes {
+			width: 335px;
+			float: left;
+			padding: 10px;
+
+			.proyecto {
+				clear: both;
+				overflow: hidden;
+				height: 100%;
+				padding: 10px;
+				margin-bottom: 15px;
+				background: #fff;
+				box-shadow: 0 0 3px 0 #142B38;
+
+				h3 {
+					font-size: 15px;
+					color: #fff;
+					background: #0F73B3;
+					margin: -15px -15px 20px;
+					padding: 10px;
+					font-style: italic
+				}
+				p {
+					font-size: 12px;
+				}
+				cite {
+					color: #666;
+					font-size: 12px;
+					float: right;
+					margin-bottom: 10px;
+				}
+				.botonera {
+					clear: both;
+
+					a {
+						display: block;
+						line-height: 30px;
+						text-align: center;
+						width: 75px;
+						height: 30px;
+						color: #666;
+						font-size: 13px;
+						float: left;
+						margin-right: 10px;
+						opacity: 0.8;
+						-webkit-transition: all 200ms ease-in-out;
+						-moz-transition: all 200ms ease-in-out;
+						-ms-transition: all 200ms ease-in-out;
+						-o-transition: all 200ms ease-in-out;
+						transition: all 200ms ease-in-out;
+
+						&:hover {
+							opacity: 1;
+						}
+
+						&:first-child {
+							text-indent: -999em;
+							overflow: hidden;
+							background: url(../img/voto-positivo.png) center no-repeat;
+						}
+						&:nth-child(2) {
+							text-indent: -999em;
+							overflow: hidden;
+							background: url(../img/voto-negativo.png) center no-repeat;
+						}
+						&:nth-child(3), &:nth-child(4) {
+							margin-right: 0;
+							&:hover {
+								text-decoration: underline;
+							}
+						}
+						&:nth-child(4) {
+							width: 60px
+						}
+					}
+				}
+			}
+		}
+	}
+	#paginado {
+		clear: both;
+		text-align: center;
+
+		li {
+			display: inline-block;
+			margin: 0 5px;
+
+			a {
+				display: block;
+				width: 25px;
+				height: 25px;
+				line-height: 25px;
+				text-align: center;
+				background: #3AB8EA;
+				color: #fff;
+
+				&.active, &:hover {
+					background: #0F73B3;
+				}
+			}
+		}
+	}
+	#footer {
+		clear: both;
+		text-align: center;
+		height: 100px;
+		background: #f0f9ff;
+	background: #dadada;
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2RhZGFkYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmMGY5ZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top, #dadada 0%, #f0f9ff 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dadada), color-stop(100%,#f0f9ff));
+	background: -webkit-linear-gradient(top, #dadada 0%,#f0f9ff 100%);
+	background: -o-linear-gradient(top, #dadada 0%,#f0f9ff 100%);
+	background: -ms-linear-gradient(top, #dadada 0%,#f0f9ff 100%);
+	background: linear-gradient(to bottom, #dadada 0%,#f0f9ff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dadada', endColorstr='#f0f9ff',GradientType=0 );
+
+		img {
+			width: 200px;
+			margin-top: 20px;
+		}
+	}
+}
+
+#titulo {
+	position:relative;
+	float:left;
+	width:100%;
+	height:auto;}
+
+#content #aside #titulo h2{
+	font-size:18px;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	color:#e1e1e1;
+	text-transform:uppercase;
+	margin:0 10px;
+	padding:5px 0px;
+	text-shadow: #666 1px 1px 1px;
+	background:url(../img/left_separador.png) bottom center no-repeat;
+	}
+	
+
+#caja_formulario {
+	position:relative;
+	float:left;
+	width:100%;
+	height:auto;
+	}
+	
+.table {
+	width:234px;
+	margin:0 5px;
+	border:0px;
+	float:left;
+	}
+
+	
+.table p{
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	color:#e1e1e1;
+	font-size:14px;
+	margin:10px 0 5px 0;
+	}
+	
+.txt_campo {
+	background:url(../img/formulario_txt.png) top left no-repeat;
+	border:none;
+	width:214px;
+	height:27px;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size:14px;
+	padding:0 10px;
+	margin:0px;
+	}
+	
+.btnBuscar {
+	background:url(../img/btnBuscar.png) top left no-repeat;
+	width:104px;
+	height:28px;
+	margin:10px 5px 5px 128px;
+	border:none;
+	}
+	
+.btnBuscar:hover {
+	background:url(../img/btnBuscar_hover.png);
+	}
