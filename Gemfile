@@ -2,4 +2,5 @@ source :rubygems
 
 gem "sinatra", :require => "sinatra/base"
 gem "shotgun"
-gem "mongoid"
+gem "sequel"
+gem "sqlite3"

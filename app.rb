@@ -3,7 +3,7 @@ APP_ENV = ENV["APP_ENV"] || "development"
 require "bundler/setup"
 Bundler.require(:default)
 
-Mongoid.load!("config/mongoid.yml", APP_ENV)
+DB = Sequel.sqlite "votalo_#{APP_ENV}.db"
 
 
 class Votalo < Sinatra::Base
