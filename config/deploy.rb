@@ -40,6 +40,8 @@ set :keep_releases, 5
 #
 #after "deploy:update_code", "deploy:create_symlink_shared"
 
+after "deploy:start",   "unicorn:start"
+after "deploy:stop",    "unicorn:stop"
 after "deploy:restart", "unicorn:reload"
 
 
