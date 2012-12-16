@@ -1,7 +1,7 @@
 require File.expand_path("../config/boot.rb", __FILE__)
 require "json"
 
-class Votalo < Sinatra::Base
+class VotaloBotalo < Sinatra::Base
   get "/" do
     @top_projects = Project.top
     @recent_projects = Project.recent
