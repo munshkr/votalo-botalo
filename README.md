@@ -1,4 +1,6 @@
-# Votalo o Botalo: Democracia 2.0 - Congreso Abierto - Congreso Virtual #
+# Votalo o Botalo #
+
+### Democracia 2.0 - Congreso Abierto - Congreso Virtual ###
 
 http://hackatonmza.com.ar/votalo-o-botalo-parlamento-2-0/
 
