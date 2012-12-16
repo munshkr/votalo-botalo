@@ -21,4 +21,8 @@ namespace :db do
 
     puts "=> Done"
   end
+
+  task :migrate do
+    puts "=> Nothing to do"
+  end
 end
