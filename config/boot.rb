@@ -3,7 +3,7 @@ APP_ENV = ENV["APP_ENV"] || "development"
 APP_ROOT = File.expand_path('../..', __FILE__)
 
 require "bundler/setup"
-Bundler.require(:default)
+Bundler.require(:default, APP_ENV.to_sym)
 
 require "active_support/inflector"
 
