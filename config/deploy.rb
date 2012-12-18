@@ -27,18 +27,19 @@ set :ssh_options, :forward_agent => true
 
 set :keep_releases, 5
 
-#set :config_files, %w{ }
-#
-#namespace :deploy do
-#  desc "Create symlinks to shared config files"
-#  task :create_symlink_shared do
-#    config_files.each do |filename|
-#      run "ln -nfs #{deploy_to}/shared/config/#{filename}.yml #{release_path}/config/#{filename}.yml"
-#    end
-#  end
-#end
-#
-#after "deploy:update_code", "deploy:create_symlink_shared"
+set :config_files, %w{ }
+
+namespace :deploy do
+  desc "Create symlinks to shared files"
+  task :create_symlink_shared do
+    config_files.each do |filename|
+      run "ln -nfs #{deploy_to}/shared/config/#{filename}.yml #{release_path}/config/#{filename}.yml"
+    end
+    run "ln -nfs #{deploy_to}/shared/db/votalo.db #{release_path}/db/votalo.db"
+  end
+end
+
+after "deploy:update_code", "deploy:create_symlink_shared"
 
 after "deploy:start",   "unicorn:start"
 after "deploy:stop",    "unicorn:stop"
