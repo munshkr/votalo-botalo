@@ -8,6 +8,6 @@
 
 listen 2007 # by default Unicorn listens on port 8080
 worker_processes 2 # this should be >= nr_cpus
-pid "/home/mapa/votalo-botalo/shared/pids/unicorn.pid"
+pid "/home/mapa/votalo-botalo/shared/tmp/pids/unicorn.pid"
 stderr_path "/home/mapa/votalo-botalo/shared/log/unicorn.err.log"
 stdout_path "/home/mapa/votalo-botalo/shared/log/unicorn.log"
