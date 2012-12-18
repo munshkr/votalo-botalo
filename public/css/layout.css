@@ -149,73 +149,76 @@ body {
   float: right;
   margin-bottom: 10px;
 }
-#content #proyectos #masvotados .proyecto .botonera,
-#content #proyectos #recientes .proyecto .botonera {
+
+#content #proyectos .proyecto .botonera {
   clear: both;
 }
-#content #proyectos #masvotados .proyecto .botonera a,
-#content #proyectos #recientes .proyecto .botonera a {
+#content #proyectos .proyecto .botonera a {
+  color: #666666;
+  cursor: pointer;
   display: block;
+  float: left;
+  font-size: 13px;
+  height: 30px;
   line-height: 30px;
+  margin-right: 10px;
+  padding: 2px;
   text-align: center;
   width: 75px;
-  height: 30px;
-  color: #666666;
-  font-size: 13px;
-  float: left;
-  margin-right: 10px;
   opacity: 0.7;
-  -webkit-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
   -moz-transition: all 200ms ease-in-out;
   -ms-transition: all 200ms ease-in-out;
   -o-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
-  padding: 3px;
+  -webkit-transition: all 200ms ease-in-out;
 }
-#content #proyectos #masvotados .proyecto .botonera a:hover,
-#content #proyectos #recientes .proyecto .botonera a:hover,
-#content #proyectos #masvotados .proyecto .botonera a.voted,
-#content #proyectos #recientes .proyecto .botonera a.voted {
+#content #proyectos .proyecto .botonera a:hover,
+#content #proyectos .proyecto .botonera a.selected {
   opacity: 1;
 }
-#content #proyectos #masvotados .proyecto .botonera a:first-child,
-#content #proyectos #recientes .proyecto .botonera a:first-child {
+#content #proyectos .proyecto .botonera a.positive {
   text-indent: -999em;
   overflow: hidden;
   background: url(../img/voto-positivo.png) center no-repeat;
 }
-#content #proyectos #masvotados .proyecto .botonera a.voted:first-child,
-#content #proyectos #recientes .proyecto .botonera a.voted:first-child {
-  padding: 2px;
-  border: 1px solid #008d36;
-}
-#content #proyectos #masvotados .proyecto .botonera a:nth-child(3),
-#content #proyectos #recientes .proyecto .botonera a:nth-child(3) {
+#content #proyectos .proyecto .botonera a.negative {
   text-indent: -999em;
   overflow: hidden;
   background: url(../img/voto-negativo.png) center no-repeat;
 }
-#content #proyectos #masvotados .proyecto .botonera a.voted:nth-child(3),
-#content #proyectos #recientes .proyecto .botonera a.voted:nth-child(3) {
-  padding: 2px;
-  border: 1px solid #bd1622;
+#content #proyectos .proyecto .botonera span.positive,
+#content #proyectos .proyecto .botonera span.negative {
+  float: left;
+  padding-top: 8px;
+  margin-right: 10px;
 }
-#content #proyectos #masvotados .proyecto .botonera a:nth-child(3),
-#content #proyectos #recientes .proyecto .botonera a:nth-child(3),
+#content #proyectos .proyecto .botonera span.positive {
+  color: #008d36;
+}
+#content #proyectos .proyecto .botonera span.negative {
+  color: #bd1622;
+}
+#content #proyectos .proyecto .botonera .more {
+  width: auto;
+  float: right;
+}
 #content #proyectos #masvotados .proyecto .botonera a:nth-child(4),
-#content #proyectos #recientes .proyecto .botonera a:nth-child(4) {
+#content #proyectos #recientes .proyecto .botonera a:nth-child(4),
+#content #proyectos #masvotados .proyecto .botonera a:nth-child(5),
+#content #proyectos #recientes .proyecto .botonera a:nth-child(5) {
   margin-right: 0;
 }
-#content #proyectos #masvotados .proyecto .botonera a:nth-child(3):hover,
-#content #proyectos #recientes .proyecto .botonera a:nth-child(3):hover,
 #content #proyectos #masvotados .proyecto .botonera a:nth-child(4):hover,
-#content #proyectos #recientes .proyecto .botonera a:nth-child(4):hover {
+#content #proyectos #recientes .proyecto .botonera a:nth-child(4):hover,
+#content #proyectos #masvotados .proyecto .botonera a:nth-child(5):hover,
+#content #proyectos #recientes .proyecto .botonera a:nth-child(5):hover {
   text-decoration: underline;
 }
-#content #proyectos #masvotados .proyecto .botonera a:nth-child(4),
-#content #proyectos #recientes .proyecto .botonera a:nth-child(4) {
+#content #proyectos #masvotados .proyecto .botonera a:nth-child(5),
+#content #proyectos #recientes .proyecto .botonera a:nth-child(5) {
   width: 60px;
 }
+
 #content #paginado {
   clear: both;
   text-align: center;
@@ -309,4 +312,9 @@ body {
 }
 .btnBuscar:hover {
   background: url(../img/btnBuscar_hover.png);
+}
+
+.hidden {
+  position: absolute;
+  left: -9999px;
 }

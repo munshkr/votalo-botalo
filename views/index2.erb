@@ -75,17 +75,17 @@
 				<h1>Más votados</h1>
 				
         <% @top_projects.each do |project| %>
-          <div id="<%= project.id %>" class="proyecto">
+          <div data-id="<%= project.id %>" class="proyecto">
             <h3>Proyecto nro <%= project.numeroExpediente %></h3>
             <p><%= project.descripcion %></p>
             <cite><%= project.autor %></cite>
             <div class="botonera">
               <% vote = project.vote_from(@user) %>
-              <a id="<%= project.id %>" class="positive <%= vote.try(:positive?) ? 'voted' : '' %>" href="#">Votado</a>
-              <span style="color: #008d36; float: left; padding-top: 8px; margin-right: 10px"><%= project.positive_votes.count %></span>
-              <a id="<%= project.id %>" class="negative <%= vote.try(:negative?) ? 'voted' : '' %>" href="#">Botado</a>
-              <span style="color: #bd1622; float: left; padding-top: 8px; margin-left: 10px"><%= project.negative_votes.count %></span>
-              <a href="<%= project.url %>">+ info</a>
+              <a class="positive <%= vote.try(:positive?) ? 'selected' : '' %>" href="#">Votado</a>
+              <span class="positive"><%= project.positive_votes.count %></span>
+              <a class="negative <%= vote.try(:negative?) ? 'selected' : '' %>" href="#">Botado</a>
+              <span class="negative"><%= project.negative_votes.count %></span>
+              <a class="more" href="<%= project.url %>">+ info</a>
               <!--
               <a href="#">Comentarios</a>
               -->
@@ -98,17 +98,17 @@
 				<h2>Proyectos recientes</h2>
 				
         <% @recent_projects.each do |project| %>
-          <div id="<%= project.id %>" class="proyecto">
+          <div data-id="<%= project.id %>" class="proyecto">
             <h3>Proyecto nro <%= project.numeroExpediente %></h3>
             <p><%= project.descripcion %></p>
             <cite><%= project.autor %></cite>
             <div class="botonera">
               <% vote = project.vote_from(@user) %>
-              <a id="<%= project.id %>" class="positive <%= vote.try(:positive?) ? 'voted' : '' %>" href="#">Votado</a>
-              <span style="color: #008d36; float: left; padding-top: 8px; margin-right: 10px"><%= project.positive_votes.count %></span>
-              <a id="<%= project.id %>" class="negative <%= vote.try(:negative?) ? 'voted' : '' %>" href="#">Botado</a>
-              <span style="color: #bd1622; float: left; padding-top: 8px; margin-left: 10px"><%= project.negative_votes.count %></span>
-              <a href="<%= project.url %>">+ info</a>
+              <a class="positive <%= vote.try(:positive?) ? 'selected' : '' %>" href="#">Votado</a>
+              <span class="positive"><%= project.positive_votes.count %></span>
+              <a class="negative <%= vote.try(:negative?) ? 'selected' : '' %>" href="#">Botado</a>
+              <span class="negative"><%= project.negative_votes.count %></span>
+              <a class="more" href="<%= project.url %>">+ info</a>
               <!--
               <a href="#">Comentarios</a>
               -->
@@ -152,20 +152,44 @@
 
   <script>
     $(function() {
-      $(".proyecto").each(function() {
-        var proj_id = $(this).attr("id");
-        $(this).find(".positive").click(function() {
-          $.post("/project/" + proj_id + "/vote?vote=positive", function(data) {
-            alert("Voto realizado");
-          });
+      $(".botonera a.positive, .botonera a.negative").click(function() {
+        var $counter = null;
+        var vote = null;
+
+        $(this).toggleClass("selected");
+        if ($(this).hasClass("positive")) {
+          $counter = $(this).siblings("span.positive");
+          vote = 1;
+        } else if ($(this).hasClass("negative")) {
+          $counter = $(this).siblings("span.negative");
+          vote = -1;
+        }
+        var value = parseInt($counter.text());
+        if ($(this).hasClass("selected")) { value++; } else { value--; };
+        $counter.text(value);
+
+        $(this).siblings(".selected").each(function() {
+          $(this).removeClass("selected");
+          if ($(this).hasClass("positive")) {
+            $counter = $(this).siblings("span.positive");
+          } else if ($(this).hasClass("negative")) {
+            $counter = $(this).siblings("span.negative");
+          }
+          $counter.text(parseInt($counter.text()) - 1);
         });
 
-        $(this).find(".negative").click(function() {
-          $.post("/project/" + proj_id + "/vote?vote=negative", function(data) {
-            alert("Voto realizado");
-          });
+        var $proj = $(this).parents(".proyecto");
+        var url = "/project/" + $proj.data("id") + "/vote?v=" + vote;
+        if (!$(this).hasClass("selected")) { url += "&d=1"; }
+        $.post(url).error(function(jqxhr) {
+          if (jqxhr.readyState !== 0) {
+            alert("Ocurrió un error. Por favor, inténtelo de nuevo.");
+          }
         });
+
+        return false;
       });
+
     });
   </script>
 </body>

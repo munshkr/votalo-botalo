@@ -22,16 +22,19 @@ class VotaloBotalo < Sinatra::Base
     user_ip = env["REMOTE_ADDR"]
     user = User.find_or_create(ip: user_ip)
 
-    if params[:vote] == "positive"
-      num_vote = 1
-    elsif params[:vote] == "negative"
-      num_vote = -1
-    end
-
     opts = { project: project, user: user }
     vote = Vote.find(opts) || Vote.new(opts)
-    vote.voto = num_vote
-    vote.save(changed: true, raise_on_save_failure: true)
+
+    if ["1", "-1"].include?(params[:v])
+      num_vote = params[:v].to_i
+    end
+
+    if params[:d] and vote.voto == num_vote
+      vote.delete
+    else
+      vote.voto = num_vote
+      vote.save(changed: true, raise_on_save_failure: true)
+    end
 
     return nil
   end
