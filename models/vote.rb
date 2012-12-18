@@ -11,4 +11,12 @@ class Vote < Sequel::Model
     foreign_key :project_id, :projects, on_delete: :cascade, on_update: :cascade
     foreign_key :user_id, :users, on_delete: :cascade, on_update: :cascade
   end
+
+  def positive?
+    voto == 1
+  end
+
+  def negative?
+    voto == -1
+  end
 end

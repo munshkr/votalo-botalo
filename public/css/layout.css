@@ -170,9 +170,12 @@ body {
   -ms-transition: all 200ms ease-in-out;
   -o-transition: all 200ms ease-in-out;
   transition: all 200ms ease-in-out;
+  padding: 3px;
 }
 #content #proyectos #masvotados .proyecto .botonera a:hover,
-#content #proyectos #recientes .proyecto .botonera a:hover {
+#content #proyectos #recientes .proyecto .botonera a:hover,
+#content #proyectos #masvotados .proyecto .botonera a.voted,
+#content #proyectos #recientes .proyecto .botonera a.voted {
   opacity: 1;
 }
 #content #proyectos #masvotados .proyecto .botonera a:first-child,
@@ -181,11 +184,21 @@ body {
   overflow: hidden;
   background: url(../img/voto-positivo.png) center no-repeat;
 }
+#content #proyectos #masvotados .proyecto .botonera a.voted:first-child,
+#content #proyectos #recientes .proyecto .botonera a.voted:first-child {
+  padding: 2px;
+  border: 1px solid #008d36;
+}
 #content #proyectos #masvotados .proyecto .botonera a:nth-child(3),
 #content #proyectos #recientes .proyecto .botonera a:nth-child(3) {
   text-indent: -999em;
   overflow: hidden;
   background: url(../img/voto-negativo.png) center no-repeat;
+}
+#content #proyectos #masvotados .proyecto .botonera a.voted:nth-child(3),
+#content #proyectos #recientes .proyecto .botonera a.voted:nth-child(3) {
+  padding: 2px;
+  border: 1px solid #bd1622;
 }
 #content #proyectos #masvotados .proyecto .botonera a:nth-child(3),
 #content #proyectos #recientes .proyecto .botonera a:nth-child(3),

@@ -2,9 +2,16 @@ require File.expand_path("../config/boot.rb", __FILE__)
 require "json"
 
 class VotaloBotalo < Sinatra::Base
+  helpers do
+    def current_user
+      User.find(ip: env["REMOTE_ADDR"])
+    end
+  end
+
   get "/" do
     @top_projects = Project.top
     @recent_projects = Project.recent
+    @user = current_user
 
     erb :index2
   end

@@ -80,14 +80,14 @@
             <p><%= project.descripcion %></p>
             <cite><%= project.autor %></cite>
             <div class="botonera">
-              <a id="<%= project.id %>" class="positive" onclick="vote('positive')" href="#">Votado</a>
-              <span style="color: green; float: left; padding-top: 6px; margin-right: 10px"><%= project.positive_votes.count %></span>
-              <a id="<%= project.id %>" class="negative" onclick="vote('negative')" href="#">Botado</a>
-              <span style="color: red; float: left; padding-top: 6px; margin-left: 10px"><%= project.negative_votes.count %></span>
+              <% vote = project.vote_from(@user) %>
+              <a id="<%= project.id %>" class="positive <%= vote.try(:positive?) ? 'voted' : '' %>" href="#">Votado</a>
+              <span style="color: #008d36; float: left; padding-top: 6px; margin-right: 10px"><%= project.positive_votes.count %></span>
+              <a id="<%= project.id %>" class="negative <%= vote.try(:negative?) ? 'voted' : '' %>" href="#">Botado</a>
+              <span style="color: #bd1622; float: left; padding-top: 6px; margin-left: 10px"><%= project.negative_votes.count %></span>
               <a href="<%= project.url %>">+ info</a>
               <!--
               <a href="#">Comentarios</a>
-              <a href="#">+ info</a>
               -->
             </div>
           </div>
@@ -103,14 +103,14 @@
             <p><%= project.descripcion %></p>
             <cite><%= project.autor %></cite>
             <div class="botonera">
-              <a id="<%= project.id %>" class="positive" onclick="vote('positive')" href="#">Votado</a>
-              <span style="color: green; float: left; padding-top: 6px; margin-right: 10px"><%= project.positive_votes.count %></span>
-              <a id="<%= project.id %>" class="negative" onclick="vote('negative')" href="#">Botado</a>
-              <span style="color: red; float: left; padding-top: 6px; margin-left: 10px"><%= project.negative_votes.count %></span>
+              <% vote = project.vote_from(@user) %>
+              <a id="<%= project.id %>" class="positive <%= vote.try(:positive?) ? 'voted' : '' %>" href="#">Votado</a>
+              <span style="color: #008d36; float: left; padding-top: 6px; margin-right: 10px"><%= project.positive_votes.count %></span>
+              <a id="<%= project.id %>" class="negative <%= vote.try(:negative?) ? 'voted' : '' %>" href="#">Botado</a>
+              <span style="color: #bd1622; float: left; padding-top: 6px; margin-left: 10px"><%= project.negative_votes.count %></span>
               <a href="<%= project.url %>">+ info</a>
               <!--
               <a href="#">Comentarios</a>
-              <a href="#">+ info</a>
               -->
             </div>
           </div>
@@ -151,31 +151,18 @@
 	</script>
 
   <script>
-    var vote = null;
-    $(function() {
-      var vote = function(type) {
-        alert(type);
-        //debugger;
-        //project_id = document.getElementById(
-        //url = "/project/" + project_id + "/vote";
-        //$.post("/project/" + project_id + "/vote?
-      }
-    });
-
     $(function() {
       $(".proyecto").each(function() {
         var proj_id = $(this).attr("id");
         $(this).find(".positive").click(function() {
           $.post("/project/" + proj_id + "/vote?vote=positive", function(data) {
             alert("Voto realizado");
-            //alert(data);
           });
         });
 
         $(this).find(".negative").click(function() {
           $.post("/project/" + proj_id + "/vote?vote=negative", function(data) {
             alert("Voto realizado");
-            //alert(data);
           });
         });
       });

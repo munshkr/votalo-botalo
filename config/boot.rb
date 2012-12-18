@@ -6,6 +6,7 @@ require "bundler/setup"
 Bundler.require(:default, APP_ENV.to_sym)
 
 require "active_support/inflector"
+require "active_support/core_ext/object/try"
 
 # connect to DB
 DB = Sequel.sqlite(File.join(APP_ROOT, "db", "votalo.db"))

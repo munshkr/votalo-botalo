@@ -24,6 +24,10 @@ class Project < Sequel::Model
     votes_dataset.where(voto: (-1))
   end
 
+  def vote_from(user)
+    votes_dataset.where(user: user).first
+  end
+
   def self.top
     rows = DB["""
       SELECT projects.id, SUM(votes.voto) AS suma
