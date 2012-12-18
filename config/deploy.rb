@@ -36,7 +36,7 @@ namespace :deploy do
       run "ln -nfs #{deploy_to}/shared/config/#{filename}.yml #{release_path}/config/#{filename}.yml"
     end
     run "ln -nfs #{deploy_to}/shared/db/votalo.db #{release_path}/db/votalo.db"
-    run "ln -nfs #{deploy_to}/shared/tmp #{release_path}"
+    run "ln -nfs #{deploy_to}/shared/pids #{release_path}/tmp"
   end
 end
 
