@@ -1,19 +1,203 @@
-<div class="row-fluid">
-  <div class="span6">
-    <h4>Más votados</h4>
-    <ul>
-      <% @top_projects.each do |project| %>
-        <li><%= project.numeroExpediente %></li>
-      <% end %>
-    </ul>
-  </div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-language" content="es" /> 
+<title>Votalo o Botalo</title>
+<meta name="description" content="" />
 
-  <div class="span6">
-    <h4>Más recientes</h4>
-    <ul>
-      <% @recent_projects.each do |project| %>
-        <li><%= project.numeroExpediente %></li>
-      <% end %>
-    </ul>
-  </div>
-</div>
+<link rel="shortcut icon" href="img/favicon.png" type="image/png" /> 
+<link href="css/layout.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+	<div id="content">
+		
+		<div id="header">
+			<a href="#"><img src="img/cabecera_logo.png" alt="Logo" /></a>
+		</div>
+		<!-- fin #header -->
+		
+		<div id="aside">
+			<div id="shadow"></div>
+      <div id="titulo">
+        <h2>Busqueda </h2>
+      </div>
+      
+      <div id="caja_formulario"><form action="" method="post" name="formBuscar">
+        <table width="100%" border="0" class="table">
+  <tr>
+    <td><p>Número de expediente:</p></td>
+  </tr>
+  <tr>
+    <td><label>
+      <input name="txtExpediente" type="text" class="txt_campo" id="txtExpediente" />
+    </label></td>
+  </tr>
+  <tr>
+    <td><p>Autor:</p></td>
+  </tr>
+  <tr>
+    <td><label>
+      <input name="txtAutor" type="text" class="txt_campo" id="txtAutor" />
+    </label></td>
+  </tr>
+  <tr>
+    <td><p>Fecha:</p></td>
+  </tr>
+  <tr>
+    <td><label>
+      <input name="txtFecha" type="text" class="txt_campo" id="txtFecha" />
+    </label></td>
+  </tr>
+  <tr>
+    <td><p>Bloque:</p></td>
+  </tr>
+  <tr>
+    <td><label>
+      <input name="txtBloque" type="text" class="txt_campo" id="txtBloque" />
+    </label></td>
+  </tr>
+  <tr>
+    <td><label>
+      <input name="btnBuscar" type="submit" class="btnBuscar" id="btnBuscar" value="" />
+    </label></td>
+  </tr>
+</table></form>
+
+       
+      </div>
+		</div>
+		<!-- fin #aside -->
+		
+		<div id="proyectos">
+			<div id="masvotados">
+				<h1>Más votados</h1>
+				
+        <% @top_projects.each do |project| %>
+          <div data-id="<%= project.id %>" class="proyecto">
+            <h3>Proyecto nro <%= project.numeroExpediente %></h3>
+            <p><%= project.descripcion %></p>
+            <cite><%= project.autor %></cite>
+            <div class="botonera">
+              <% vote = project.vote_from(@user) %>
+              <a class="positive <%= vote.try(:positive?) ? 'selected' : '' %>" href="#">Votado</a>
+              <span class="positive"><%= project.positive_votes.count %></span>
+              <a class="negative <%= vote.try(:negative?) ? 'selected' : '' %>" href="#">Botado</a>
+              <span class="negative"><%= project.negative_votes.count %></span>
+              <a class="more" href="<%= project.url %>">+ info</a>
+              <!--
+              <a href="#">Comentarios</a>
+              -->
+            </div>
+          </div>
+        <% end %>
+			</div>
+
+			<div id="recientes">
+				<h2>Proyectos recientes</h2>
+				
+        <% @recent_projects.each do |project| %>
+          <div data-id="<%= project.id %>" class="proyecto">
+            <h3>Proyecto nro <%= project.numeroExpediente %></h3>
+            <p><%= project.descripcion %></p>
+            <cite><%= project.autor %></cite>
+            <div class="botonera">
+              <% vote = project.vote_from(@user) %>
+              <a class="positive <%= vote.try(:positive?) ? 'selected' : '' %>" href="#">Votado</a>
+              <span class="positive"><%= project.positive_votes.count %></span>
+              <a class="negative <%= vote.try(:negative?) ? 'selected' : '' %>" href="#">Botado</a>
+              <span class="negative"><%= project.negative_votes.count %></span>
+              <a class="more" href="<%= project.url %>">+ info</a>
+              <!--
+              <a href="#">Comentarios</a>
+              -->
+            </div>
+          </div>
+        <% end %>
+			</div>
+			<!-- fin #recientes -->
+			
+			<ul id="paginado">
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+			</ul>
+			
+		</div>
+		<!-- fin #proyectos -->
+		
+		<div id="footer">
+      <a href="http://hackatonmza.com.ar/" alt="#HackatonMza"><img src="img/logo.png" alt="" /></a>
+		</div>
+		
+	</div>
+	<!-- fin #content -->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/jquery-1.8.1.min.js"><\/script>')</script>
+
+  <!--
+	<script src="/js/plugins.js"></script>
+	<script src="/js/script.js"></script>
+  -->
+
+	<!--[if (gte IE 6)&(lte IE 8)]>
+	  <script type="text/javascript" src="js/selectivizr-min.js"></script>
+	<![endif]--> 
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37140332-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  <script>
+    $(function() {
+      $(".botonera a.positive, .botonera a.negative").click(function() {
+        var $counter = null;
+        var vote = null;
+
+        $(this).toggleClass("selected");
+        if ($(this).hasClass("positive")) {
+          $counter = $(this).siblings("span.positive");
+          vote = 1;
+        } else if ($(this).hasClass("negative")) {
+          $counter = $(this).siblings("span.negative");
+          vote = -1;
+        }
+        var value = parseInt($counter.text());
+        if ($(this).hasClass("selected")) { value++; } else { value--; };
+        $counter.text(value);
+
+        $(this).siblings(".selected").each(function() {
+          $(this).removeClass("selected");
+          if ($(this).hasClass("positive")) {
+            $counter = $(this).siblings("span.positive");
+          } else if ($(this).hasClass("negative")) {
+            $counter = $(this).siblings("span.negative");
+          }
+          $counter.text(parseInt($counter.text()) - 1);
+        });
+
+        var $proj = $(this).parents(".proyecto");
+        var url = "/project/" + $proj.data("id") + "/vote?v=" + vote;
+        if (!$(this).hasClass("selected")) { url += "&d=1"; }
+        $.post(url).error(function(jqxhr) {
+          if (jqxhr.readyState !== 0) {
+            alert("Ocurrió un error. Por favor, inténtelo de nuevo.");
+          }
+        });
+
+        return false;
+      });
+
+    });
+  </script>
+</body>
+</html>

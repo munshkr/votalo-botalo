@@ -1,0 +1,19 @@
+<div class="row-fluid">
+  <div class="span6">
+    <h4>Más votados</h4>
+    <ul>
+      <% @top_projects.each do |project| %>
+        <li><%= project.numeroExpediente %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="span6">
+    <h4>Más recientes</h4>
+    <ul>
+      <% @recent_projects.each do |project| %>
+        <li><%= project.numeroExpediente %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
