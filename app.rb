@@ -13,7 +13,7 @@ class VotaloBotalo < Sinatra::Base
     @recent_projects = Project.recent
     @user = current_user
 
-    erb :index2
+    erb :index
   end
 
   post "/project/:id/vote" do
