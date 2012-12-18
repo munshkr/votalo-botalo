@@ -11,14 +11,9 @@ class VotaloBotalo < Sinatra::Base
 
   post "/project/:id/vote" do
     project = Project[params[:id]]
+
     user_ip = env["REMOTE_ADDR"]
-
     user = User.find_or_create(ip: user_ip)
-
-    if vote = Vote.find(project: project, user: user)
-      #return { error "User already voted for this project!"
-      return "null"
-    end
 
     if params[:vote] == "positive"
       num_vote = 1
@@ -26,9 +21,11 @@ class VotaloBotalo < Sinatra::Base
       num_vote = -1
     end
 
-    vote = Vote.create(project: project, user: user, voto: num_vote)
-    puts vote
+    opts = { project: project, user: user }
+    vote = Vote.find(opts) || Vote.new(opts)
+    vote.voto = num_vote
+    vote.save(changed: true, raise_on_save_failure: true)
 
-    [project.positive_votes.count, project.negative_votes.count].to_json
+    return nil
   end
 end
