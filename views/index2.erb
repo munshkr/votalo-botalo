@@ -82,9 +82,9 @@
             <div class="botonera">
               <% vote = project.vote_from(@user) %>
               <a id="<%= project.id %>" class="positive <%= vote.try(:positive?) ? 'voted' : '' %>" href="#">Votado</a>
-              <span style="color: #008d36; float: left; padding-top: 6px; margin-right: 10px"><%= project.positive_votes.count %></span>
+              <span style="color: #008d36; float: left; padding-top: 8px; margin-right: 10px"><%= project.positive_votes.count %></span>
               <a id="<%= project.id %>" class="negative <%= vote.try(:negative?) ? 'voted' : '' %>" href="#">Botado</a>
-              <span style="color: #bd1622; float: left; padding-top: 6px; margin-left: 10px"><%= project.negative_votes.count %></span>
+              <span style="color: #bd1622; float: left; padding-top: 8px; margin-left: 10px"><%= project.negative_votes.count %></span>
               <a href="<%= project.url %>">+ info</a>
               <!--
               <a href="#">Comentarios</a>
@@ -105,9 +105,9 @@
             <div class="botonera">
               <% vote = project.vote_from(@user) %>
               <a id="<%= project.id %>" class="positive <%= vote.try(:positive?) ? 'voted' : '' %>" href="#">Votado</a>
-              <span style="color: #008d36; float: left; padding-top: 6px; margin-right: 10px"><%= project.positive_votes.count %></span>
+              <span style="color: #008d36; float: left; padding-top: 8px; margin-right: 10px"><%= project.positive_votes.count %></span>
               <a id="<%= project.id %>" class="negative <%= vote.try(:negative?) ? 'voted' : '' %>" href="#">Botado</a>
-              <span style="color: #bd1622; float: left; padding-top: 6px; margin-left: 10px"><%= project.negative_votes.count %></span>
+              <span style="color: #bd1622; float: left; padding-top: 8px; margin-left: 10px"><%= project.negative_votes.count %></span>
               <a href="<%= project.url %>">+ info</a>
               <!--
               <a href="#">Comentarios</a>
