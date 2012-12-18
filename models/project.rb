@@ -24,6 +24,10 @@ class Project < Sequel::Model
     votes_dataset.where(voto: (-1))
   end
 
+  def voted_by?(user)
+    !votes_dataset.where(user: user).empty?
+  end
+
   def vote_from(user)
     votes_dataset.where(user: user).first
   end
