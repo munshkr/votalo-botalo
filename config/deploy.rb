@@ -2,12 +2,12 @@ require "bundler/capistrano"
 require "rvm/capistrano"
 
 set :application, "votalo-botalo"
-set :deploy_to, "/home/mapa/#{application}"
+set :deploy_to, "/home/vob/#{application}"
 
 require "capistrano-unicorn"
 
-set :user, "mapa"
-set :domain, "hhba.info"
+set :user, "vob"
+set :domain, "67.202.108.133"
 set :environment, "production"
 
 role :app, domain
@@ -15,7 +15,7 @@ role :web, domain
 role :db, domain, :primary => true
 
 set :normalize_asset_timestamps, false
-set :rvm_ruby_string, '1.9.3-p194@votalo-botalo'
+set :rvm_ruby_string, '1.9.3-p327'
 set :rvm_type, :user
 
 set :scm, :git
